@@ -1,0 +1,6 @@
+# Force all shell scripts to use LF only
+*.sh text eol=lf
+
+# Optional: enforce LF for Terraform files too
+*.tf text eol=lf
+*.tfvars text eol=lf
