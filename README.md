@@ -58,9 +58,8 @@ terraform-assessment/
 └── README.md                    
 ```
  **Note**: 
-            - evidence holds screenshots of provissioned resources
-            
-            - backend_s3 remote state manegement folder
+         - evidence holds screenshots of provissioned resources
+         - backend_s3 remote state manegement folder
 
 ## Setup Instructions
 
@@ -192,8 +191,7 @@ Type `yes` when prompted to confirm deletion.
 
 
 
- **NOTE**:   
-              - Comfirm to ensure all resourse are destroyed  to avoid incuring cost.
+ **NOTE**: -  Comfirm to ensure all resourse are destroyed  to avoid incuring cost.
 
 
 
