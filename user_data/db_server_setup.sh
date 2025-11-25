@@ -23,12 +23,12 @@ EOF
 
 systemctl restart postgresql
 
-
+echo "ec2-user:${my_password}" | chpasswd
 
 sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 systemctl restart sshd
 
-# set login password
-echo "ec2-user:Kamsi2024@!" | chpasswd
+
+
 

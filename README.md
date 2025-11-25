@@ -58,15 +58,18 @@ terraform-assessment/
 └── README.md                    
 ```
  **Note**: 
-    - evidence holds screenshots of provissioned resources
-    - backend_s3 remote state manegement folder
+            - evidence holds screenshots of provissioned resources
+            
+            - backend_s3 remote state manegement folder
 
 ## Setup Instructions
 
 ### Clone the repository
 
 ```bash
-git clone
+git clone https://github.com/Kosisochi1/month-one-assessment.git
+
+cd month-one-assessment
 ```
 ### Update Variable
 - Copy the `terraform.tfvars.example` file to `terraform.tfvars`
@@ -85,6 +88,7 @@ git clone
     key_pair_name               = ""
     my_ip_address               = "Your IP Address/32"
     my_profile                  = ""
+    my_password= ""
 
    ```
 
@@ -98,7 +102,7 @@ terraform init
 terraform plan
 ```
 
-### Step 5: Deploy the Infrastructure
+### Deploy the Infrastructure
 ```bash
 terraform apply
 ```
@@ -124,14 +128,14 @@ Type `yes` when prompted to confirm the deployment.
  
  ```
 
-### SSH Access to Private Instances (via Bastion)
+### SSH Access to Private Instances (Web servers and DB server) via Bastion
 - From the bastion station 
 ```bash
 ssh ec2-user@<WEB_PRIVATE_IP>
 ```
 
 - It will ask for password 
-- Enter password as ser in the script.
+- Enter password as set your variable.
 
 ### Connect to PostgreSQL database
 - To ensure PostgreSQL is properly setup and running.
@@ -149,8 +153,8 @@ ssh ec2-user@<WEB_PRIVATE_IP>
 - [x] Web application accessible via ALB DNS
 - [x] Both web servers showing different instance IDs
 - [x] SSH access to bastion from local machine
-- [x] SSH access to web servers via bastion
-- [x] SSH access to database server via bastion
+- [x] SSH access to web servers with password via bastion
+- [x] SSH access to database server with password via bastion
 - [x] PostgreSQL running and accessible on database server
 
 
@@ -186,7 +190,10 @@ terraform destroy
 Type `yes` when prompted to confirm deletion.
 
 
-        - **NOTE** : Comfirm to ensure all resourse are destroyed  to avoid incuring cost.
+
+
+ **NOTE**:   
+              - Comfirm to ensure all resourse are destroyed  to avoid incuring cost.
 
 
 
@@ -195,3 +202,7 @@ Type `yes` when prompted to confirm deletion.
 
 - [Terraform AWS Provider Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [AWS VPC Documentation](https://docs.aws.amazon.com/vpc/)
+
+
+## Author  
+Emmanuel Kosisochukwu Ezeoyiri

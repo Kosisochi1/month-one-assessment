@@ -10,14 +10,18 @@ for i in {1..10}; do
 done
 
 echo "===== Updating System ====="
-# sudo yum update -y
 
-# echo "===== Installing Apache (httpd) ====="
-# sudo yum install -y httpd
 
 echo "===== Enabling and Starting Apache ====="
 sudo systemctl enable httpd
 sudo systemctl start httpd
+
+
+echo "ec2-user:${my_password}" | chpasswd
+
+sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+systemctl restart sshd
 
 echo "===== Fetching EC2 Instance ID ====="
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
@@ -119,9 +123,5 @@ sudo chown -R apache:apache /var/www
 echo "===== Apache Web Server Setup Complete ====="
 
 
-sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 systemctl restart sshd
 
-# set login password
-echo "ec2-user:Kamsi2024@!" | chpasswd

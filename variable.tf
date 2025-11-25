@@ -38,3 +38,8 @@ variable "my_profile" {
 
 
 }
+variable "my_password" {
+  description = "password"
+  type        = string
+
+}

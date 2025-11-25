@@ -327,7 +327,10 @@ resource "aws_instance" "db_server" {
   subnet_id              = aws_subnet.techcorp_private_subnet_1.id
   vpc_security_group_ids = [aws_security_group.db_server_sg.id]
   key_name               = aws_key_pair.techcorp_key.key_name
-  user_data              = file("${path.module}/user_data/db_server_setup.sh")
+  user_data = templatefile("${path.module}/user_data/db_server_setup.sh", {
+    my_password = var.my_password
+  })
+
 
 
   depends_on = [aws_nat_gateway.techcorp_nat_gateway_1]
@@ -348,8 +351,9 @@ resource "aws_instance" "web_server" {
 
   vpc_security_group_ids = [aws_security_group.web_server_sg.id]
   key_name               = aws_key_pair.techcorp_key.key_name
-  user_data              = file("${path.module}/user_data/web_server_setup.sh")
-
+  user_data = templatefile("${path.module}/user_data/web_server_setup.sh", {
+    my_password = var.my_password
+  })
 
 
   tags = {
